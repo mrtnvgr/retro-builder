@@ -76,3 +76,27 @@ RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
     mkdir build && cd build && \
     cmake .. && \
     make
+
+# Install gl4es
+WORKDIR /root
+RUN git git clone https://github.com/ptitSeb/gl4es.git && \
+    cd gl4es && \
+    mkdir build && cd build && \
+    cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
+    make
+    
+# Install more compatible sdl2 libraries
+WORKDIR /root
+RUN rm /usr/lib/aarch64-linux-gnu/libSDL2.*  && \
+    rm -rf /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so* && \
+    wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz && \
+    tar -xzf release-2.26.2.tar.gz && \
+    cd SDL-release-2.26.2 && \
+    ./configure --prefix=/usr && \
+    make -j8 && \
+    make install && \
+    /sbin/ldconfig
+
+
+
+
