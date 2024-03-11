@@ -68,6 +68,22 @@ RUN git clone https://github.com/mesonbuild/meson.git && \
     cd meson && \
     ln -s /meson/meson.py /usr/bin/meson
 
+# Install libsdl1.2
+WORKDIR /root
+RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
+    cd sdl12-compat && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make
+
+# Install gl4es
+WORKDIR /root
+RUN git clone https://github.com/ptitSeb/gl4es.git && \
+    cd gl4es && \
+    mkdir build && cd build && \
+    cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
+    make
+
 # Install more compatible SDL2
 ARG TARGETPLATFORM
 WORKDIR /root
@@ -86,19 +102,3 @@ RUN case ${TARGETPLATFORM} in \
     && make -j8 \
     && make install \
     && /sbin/ldconfig
-
-# Install libsdl1.2
-WORKDIR /root
-RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
-    cd sdl12-compat && \
-    mkdir build && cd build && \
-    cmake .. && \
-    make
-
-# Install gl4es
-WORKDIR /root
-RUN git clone https://github.com/ptitSeb/gl4es.git && \
-    cd gl4es && \
-    mkdir build && cd build && \
-    cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
-    make
