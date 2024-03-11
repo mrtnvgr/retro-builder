@@ -88,7 +88,7 @@ RUN git clone https://github.com/ptitSeb/gl4es.git && \
 ARG TARGETPLATFORM
 WORKDIR /root
 RUN case ${TARGETPLATFORM} in \
-         "linux/amd64")  ARCHITECTURE=/usr/include  ;; \
+         "linux/amd64")  ARCHITECTURE=/usr/lib/x86_64-linux-gnu  ;; \
          "linux/arm64")  ARCHITECTURE=/usr/lib/aarch64-linux-gnu  ;; \
          "linux/arm/v7") ARCHITECTURE=/usr/lib/arm-linux-gnueabihf  ;; \
          "linux/386")    ARCHITEXTURE=/usr/include   ;; \
