@@ -41,7 +41,7 @@ docker build . --platform linux/arm/v7 -t monkeyx/retro_builder:arm32
 Execute the following on your machine:
 
 ```bash
-git clone retro_builder_docker
+git clone https://github.com/monkeyx-net/retro_builder_docker.git
 cd retro_builder_docker
 docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
 ```
