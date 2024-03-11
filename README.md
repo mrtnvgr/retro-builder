@@ -23,6 +23,14 @@ docker pull monkeyx/retro_builder:arm64
 docker run --privileged -it --platform=linux/arm64 --name builder64 monkeyx/retro_builder:arm64 bash
 ```
 
+### 64-bit X86_64
+
+Download the prebuilt image and run the Docker container using:
+
+```bash
+docker pull monkeyx/retro_builder:x86_64
+docker run --privileged -it --platform=linux/amd64 --name builder64 monkeyx/retro_builder:x86_64 bash
+```
 
 ## How to build the image
 
@@ -44,4 +52,14 @@ Execute the following on your machine:
 git clone https://github.com/monkeyx-net/retro_builder_docker.git
 cd retro_builder_docker
 docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
+```
+
+### 64-bit x86_64
+
+Execute the following on your machine:
+
+```bash
+git clone https://github.com/monkeyx-net/retro_builder_docker.git
+cd retro_builder_docker
+docker build . --platform linux/amd64 -t monkeyx/retro_builder:x86_64
 ```
