@@ -1,4 +1,4 @@
-# retro_builder_docker
+## retro_builder_docker
 Retro Builder.
 
 The doocker file is aimed at help support compiling games to use with Portmaster
@@ -20,7 +20,7 @@ Download the prebuilt image and run the Docker container using:
 
 ```bash
 docker pull monkeyx/retro_builder:arm64
-docker run --privileged -it --name builder64 monkeyx/retro_builder:arm64 bash
+docker run --privileged -it --platform=linux/arm64 --name builder64 monkeyx/retro_builder:arm64 bash
 ```
 
 
