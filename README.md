@@ -33,7 +33,7 @@ Execute the following on your machine:
 ```bash
 git clone https://github.com/monkeyx-net/retro_builder_docker.git
 cd retro_builder_docker
-docker build . --platform linux/arm/v7 -t todo/tba:arm32
+docker build . --platform linux/arm/v7 -t monkeyx_net/retro_builder:arm32
 ```
 
 ### 64-bit ARM
@@ -43,5 +43,5 @@ Execute the following on your machine:
 ```bash
 git clone retro_builder_docker
 cd retrooz_dev_docker
-docker build . --platform linux/arm64 -t todo/tba:arm64
+docker build . --platform linux/arm64 -t monkeyx_net/retro_builder:arm64
 ```
