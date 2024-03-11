@@ -35,6 +35,7 @@ RUN apt update && \
     zlib1g-dev \
     libpng-dev \
     libsdl2-dev \
+    libsdl1.2-dev \
     clang \
     cmake \
     cmake-data \
@@ -48,7 +49,14 @@ RUN apt update && \
     mercurial-common \
     libgbm-dev \
     libsdl2-ttf-2.0-0 \
-    libsdl2-ttf-dev
+    libsdl2-ttf-dev \
+    libsdl2-image-2.0.0 \
+    libsdl2-image-dev \
+    libsdl2-mixer-2.0.0 \
+    libsdl2-mixer-dev \
+    libsdl-image1.2-dev \
+    libsdl-mixer1.2-dev \
+    libsdl-gfx1.2-dev 
 
 RUN apt update
 
@@ -60,3 +68,11 @@ WORKDIR /root
 RUN git clone https://github.com/mesonbuild/meson.git && \
     cd meson && \
     ln -s /meson/meson.py /usr/bin/meson
+
+# Install libsdl1.2
+WORKDIR /root
+RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
+    cd sdl12-compat && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make
