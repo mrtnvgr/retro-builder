@@ -10,8 +10,8 @@ The doocker file is aimed at help support compiling games to use with Portmaster
 Download the prebuilt image and run the Docker container using:
 
 ```bash
-docker pull todo/tba:arm32
-docker run --privileged -it --name somename32 todo/tba:arm32 bash
+docker pull monkeyx/retro_builder:arm32
+docker run --privileged -it --platform=linux/armhf --name builder32 monkeyx/retro_builder:arm32 bash
 ```
 
 ### 64-bit ARM
@@ -19,8 +19,8 @@ docker run --privileged -it --name somename32 todo/tba:arm32 bash
 Download the prebuilt image and run the Docker container using:
 
 ```bash
-docker pull todo/tba:arm64
-docker run --privileged -it --name somename64 todo/tba:arm64 bash
+docker pull monkeyx/retro_builder:arm64
+docker run --privileged -it --name builder64 monkeyx/retro_builder:arm64 bash
 ```
 
 
@@ -33,7 +33,7 @@ Execute the following on your machine:
 ```bash
 git clone https://github.com/monkeyx-net/retro_builder_docker.git
 cd retro_builder_docker
-docker build . --platform linux/arm/v7 -t monkeyx_net/retro_builder:arm32
+docker build . --platform linux/arm/v7 -t monkeyx/retro_builder:arm32
 ```
 
 ### 64-bit ARM
@@ -43,5 +43,5 @@ Execute the following on your machine:
 ```bash
 git clone retro_builder_docker
 cd retrooz_dev_docker
-docker build . --platform linux/arm64 -t monkeyx_net/retro_builder:arm64
+docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
 ```

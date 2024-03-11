@@ -3,6 +3,8 @@ FROM ubuntu:22.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 RUN apt update && \
+    apt upgrade -y
+RUN apt update && \
     apt install -y \
     sudo \
     git \
@@ -42,17 +44,14 @@ RUN apt update && \
     libarchive13 \
     libcurl4 \
     libfreetype6-dev \
-    libjsoncpp1 \
+    libjsoncpp-dev \
     librhash0 \
     libuv1 \
     mercurial \
     mercurial-common \
     libgbm-dev \
-    libsdl2-ttf-2.0-0 \
     libsdl2-ttf-dev \
-    libsdl2-image-2.0.0 \
     libsdl2-image-dev \
-    libsdl2-mixer-2.0.0 \
     libsdl2-mixer-dev \
     libsdl-image1.2-dev \
     libsdl-mixer1.2-dev \
@@ -79,24 +78,27 @@ RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
 
 # Install gl4es
 WORKDIR /root
-RUN git git clone https://github.com/ptitSeb/gl4es.git && \
+RUN git clone https://github.com/ptitSeb/gl4es.git && \
     cd gl4es && \
     mkdir build && cd build && \
     cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
     make
-    
-# Install more compatible sdl2 libraries
+
+# Install more compatible SDL2
+ARG TARGETPLATFORM
 WORKDIR /root
-RUN rm /usr/lib/aarch64-linux-gnu/libSDL2.*  && \
-    rm -rf /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so* && \
-    wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz && \
-    tar -xzf release-2.26.2.tar.gz && \
-    cd SDL-release-2.26.2 && \
-    ./configure --prefix=/usr && \
-    make -j8 && \
-    make install && \
-    /sbin/ldconfig
-
-
-
-
+RUN case ${TARGETPLATFORM} in \
+         "linux/amd64")  ARCHITECTURE=/usr/include  ;; \
+         "linux/arm64")  ARCHITECTURE=/usr/lib/aarch64-linux-gnu  ;; \
+         "linux/arm/v7") ARCHITECTURE=/usr/lib/arm-linux-gnueabihf  ;; \
+         "linux/386")    ARCHITEXTURE=/usr/include   ;; \
+    esac \
+    && rm $ARCHITECTURE/libSDL2.* \
+    && rm -rf $ARCHITECTURE/libSDL2-2.0.so* \
+    && wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz \
+    && tar -xzf release-2.26.2.tar.gz \
+    && cd SDL-release-2.26.2 \
+    && ./configure --prefix=/usr \
+    && make -j8 \
+    && make install \
+    && /sbin/ldconfig
