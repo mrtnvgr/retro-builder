@@ -1,5 +1,7 @@
 # retro_builder_docker
-Retro Builder
+Retro Builder.
+
+The doocker file is aimed at help support compiling games to use with Portmaster
 
 ## How to use the image
 
