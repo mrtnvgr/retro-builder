@@ -29,7 +29,7 @@ Download the prebuilt image and run the Docker container using:
 
 ```bash
 docker pull monkeyx/retro_builder:x86_64
-docker run --privileged -it --platform=linux/amd64 --name builder64 monkeyx/retro_builder:x86_64 bash
+docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/retro_builder:x86_64 bash
 ```
 
 ## How to build the image
