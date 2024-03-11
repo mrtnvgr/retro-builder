@@ -42,6 +42,6 @@ Execute the following on your machine:
 
 ```bash
 git clone retro_builder_docker
-cd retrooz_dev_docker
+cd retro_builder_docker
 docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
 ```
