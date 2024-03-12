@@ -11,6 +11,7 @@ Download the prebuilt image and run the Docker container using:
 
 ```bash
 docker pull monkeyx/retro_builder:arm32
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker run --privileged -it --platform=linux/armhf --name builder32 monkeyx/retro_builder:arm32 bash
 ```
 
@@ -20,6 +21,7 @@ Download the prebuilt image and run the Docker container using:
 
 ```bash
 docker pull monkeyx/retro_builder:arm64
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker run --privileged -it --platform=linux/arm64 --name builder64 monkeyx/retro_builder:arm64 bash
 ```
 
@@ -29,6 +31,7 @@ Download the prebuilt image and run the Docker container using:
 
 ```bash
 docker pull monkeyx/retro_builder:x86_64
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/retro_builder:x86_64 bash
 ```
 
