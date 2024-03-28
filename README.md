@@ -1,7 +1,7 @@
 ## retro_builder_docker
 Retro Builder.
 
-The doocker file is aimed at help support compiling games to use with Portmaster
+The docker file is aimed at help support compiling games to use with Portmaster
 
 ## How to use the image
 
@@ -33,6 +33,27 @@ Download the prebuilt image and run the Docker container using:
 docker pull monkeyx/retro_builder:x86_64
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/retro_builder:x86_64 bash
+```
+
+## Copy files from Container to Host
+
+Ensure docker container is is running 
+
+Ensure relevat container running
+
+```bash
+docker container start builder32
+docker container start builder64
+docker container start builderx86_64
+```
+Copy the files
+
+docker cp <containerId>:/file/path/within/container /host/path/target
+docker cp <Name>:/file/path/within/container /host/path/target
+
+Example
+```bash
+docker cp builder32:/root/file .
 ```
 
 ## How to build the image
