@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
@@ -55,7 +55,7 @@ RUN apt update && \
     libsdl2-mixer-dev \
     libsdl-image1.2-dev \
     libsdl-mixer1.2-dev \
-    libsdl-gfx1.2-dev 
+    libsdl-gfx1.2-dev
 
 RUN apt update
 

@@ -1,4 +1,7 @@
 ## retro_builder_docker
+
+**Fork based on a new ubuntu version.**
+
 Retro Builder.
 
 The docker file is aimed at help support compiling games to use with Portmaster
@@ -37,7 +40,7 @@ docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/
 
 ## Copy files from Container to Host
 
-Ensure docker container is is running 
+Ensure docker container is is running
 
 Ensure relevat container running
 
