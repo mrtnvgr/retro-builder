@@ -59,8 +59,6 @@ RUN apt update && \
     bison \
     meson
 
-RUN apt update
-
 RUN ln -s /usr/include/libdrm/ /usr/include/drm
 
 # Install libsdl1.2
@@ -92,6 +90,7 @@ RUN case ${TARGETPLATFORM} in \
     && rm -rf $ARCHITECTURE/libSDL2-2.0.so* \
     && wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz \
     && tar -xzf release-2.26.2.tar.gz \
+    && rm release-2.26.2.tar.gz \
     && cd SDL-release-2.26.2 \
     && ./configure --prefix=/usr \
     && make -j8 \
