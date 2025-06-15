@@ -56,18 +56,12 @@ RUN apt update && \
     libsdl-image1.2-dev \
     libsdl-mixer1.2-dev \
     libsdl-gfx1.2-dev \
-    bison
+    bison \
+    meson
 
 RUN apt update
 
 RUN ln -s /usr/include/libdrm/ /usr/include/drm
-
-# Install meson
-RUN pip3 install meson
-WORKDIR /root
-RUN git clone https://github.com/mesonbuild/meson.git && \
-    cd meson && \
-    ln -s /meson/meson.py /usr/bin/meson
 
 # Install libsdl1.2
 WORKDIR /root
