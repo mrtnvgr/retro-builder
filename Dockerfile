@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM debian:12-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
