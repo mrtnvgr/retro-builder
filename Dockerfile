@@ -55,7 +55,8 @@ RUN apt update && \
     libsdl2-mixer-dev \
     libsdl-image1.2-dev \
     libsdl-mixer1.2-dev \
-    libsdl-gfx1.2-dev
+    libsdl-gfx1.2-dev \
+    bison
 
 RUN apt update
 
