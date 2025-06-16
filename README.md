@@ -1,92 +1,20 @@
-## retro_builder_docker
+# retro-builder
 
-**Fork based on a new ubuntu version.**
+*Batteries included* Docker image for compiling games to use with Portmaster.
 
-Retro Builder.
+Based on [retro_builder_docker](https://github.com/monkeyx-net/retro_builder_docker) by monkeyx, thanks!
 
-The docker file is aimed at help support compiling games to use with Portmaster
+### This fork features:
 
-## How to use the image
+- Ubuntu 20.04 -> Debian 12 base
+- Github Workflows CI builds
+- Other misc improvements
 
-### 32-bit ARM
-
-Download the prebuilt image and run the Docker container using:
+### Usage example:
 
 ```bash
-docker pull monkeyx/retro_builder:arm32
+PLATFORM=linux/arm64
+docker pull --platform $PLATFORM ghcr.io/mrtnvgr/retro-builder
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run --privileged -it --platform=linux/armhf --name builder32 monkeyx/retro_builder:arm32 bash
-```
-
-### 64-bit ARM
-
-Download the prebuilt image and run the Docker container using:
-
-```bash
-docker pull monkeyx/retro_builder:arm64
-docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run --privileged -it --platform=linux/arm64 --name builder64 monkeyx/retro_builder:arm64 bash
-```
-
-### 64-bit X86_64
-
-Download the prebuilt image and run the Docker container using:
-
-```bash
-docker pull monkeyx/retro_builder:x86_64
-docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/retro_builder:x86_64 bash
-```
-
-## Copy files from Container to Host
-
-Ensure docker container is is running
-
-Ensure relevat container running
-
-```bash
-docker container start builder32
-docker container start builder64
-docker container start builderx86_64
-```
-Copy the files
-
-docker cp <containerId>:/file/path/within/container /host/path/target
-docker cp <Name>:/file/path/within/container /host/path/target
-
-Example
-```bash
-docker cp builder32:/root/file .
-```
-
-## How to build the image
-
-### 32-bit ARM
-
-Execute the following on your machine:
-
-```bash
-git clone https://github.com/monkeyx-net/retro_builder_docker.git
-cd retro_builder_docker
-docker build . --platform linux/arm/v7 -t monkeyx/retro_builder:arm32
-```
-
-### 64-bit ARM
-
-Execute the following on your machine:
-
-```bash
-git clone https://github.com/monkeyx-net/retro_builder_docker.git
-cd retro_builder_docker
-docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
-```
-
-### 64-bit x86_64
-
-Execute the following on your machine:
-
-```bash
-git clone https://github.com/monkeyx-net/retro_builder_docker.git
-cd retro_builder_docker
-docker build . --platform linux/amd64 -t monkeyx/retro_builder:x86_64
+docker run -it --platform=$PLATFORM --name "builder_${PLATFORM}" mrtnvgr/retro_builder bash
 ```
