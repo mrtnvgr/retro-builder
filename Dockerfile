@@ -2,9 +2,9 @@ FROM debian:12-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
+
 RUN apt update && \
-    apt upgrade -y
-RUN apt update && \
+    apt upgrade -y \
     apt install -y \
     sudo \
     git \
@@ -57,7 +57,9 @@ RUN apt update && \
     libsdl-mixer1.2-dev \
     libsdl-gfx1.2-dev \
     bison \
-    meson
+    meson && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/include/libdrm/ /usr/include/drm
 
@@ -67,7 +69,7 @@ RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
     cd sdl12-compat && \
     mkdir build && cd build && \
     cmake .. && \
-    make
+    make -j4
 
 # Install gl4es
 WORKDIR /root
@@ -75,7 +77,7 @@ RUN git clone https://github.com/ptitSeb/gl4es.git && \
     cd gl4es && \
     mkdir build && cd build && \
     cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
-    make
+    make -j4
 
 # Install more compatible SDL2
 ARG TARGETPLATFORM
@@ -93,6 +95,6 @@ RUN case ${TARGETPLATFORM} in \
     && rm release-2.26.2.tar.gz \
     && cd SDL-release-2.26.2 \
     && ./configure --prefix=/usr \
-    && make -j8 \
+    && make -j4 \
     && make install \
     && /sbin/ldconfig
