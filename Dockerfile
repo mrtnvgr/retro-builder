@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 
 RUN apt update && \
-    apt upgrade -y \
+    apt upgrade -y && \
     apt install -y \
     sudo \
     git \
