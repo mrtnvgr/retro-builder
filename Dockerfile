@@ -1,4 +1,4 @@
-FROM debian:12-slim
+FROM debian:unstable-20250610-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
