@@ -16,5 +16,5 @@ Based on [retro_builder_docker](https://github.com/monkeyx-net/retro_builder_doc
 PLATFORM=linux/arm64
 docker pull --platform $PLATFORM ghcr.io/mrtnvgr/retro-builder
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run -it --platform=$PLATFORM --name "builder_${PLATFORM}" mrtnvgr/retro_builder bash
+docker run -it --platform=$PLATFORM --name "builder" ghcr.io/mrtnvgr/retro-builder bash
 ```
