@@ -69,7 +69,7 @@ RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
     cd sdl12-compat && \
     mkdir build && cd build && \
     cmake .. && \
-    make -j4
+    make -j$(nproc)
 
 # Install gl4es
 WORKDIR /root
@@ -77,7 +77,7 @@ RUN git clone https://github.com/ptitSeb/gl4es.git && \
     cd gl4es && \
     mkdir build && cd build && \
     cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
-    make -j4
+    make -j$(nproc)
 
 # Install more compatible SDL2
 ARG TARGETPLATFORM
@@ -95,6 +95,6 @@ RUN case ${TARGETPLATFORM} in \
     && rm release-2.26.2.tar.gz \
     && cd SDL-release-2.26.2 \
     && ./configure --prefix=/usr \
-    && make -j4 \
+    && make -j$(nproc) \
     && make install \
     && /sbin/ldconfig
