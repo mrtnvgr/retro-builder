@@ -1,7 +1,6 @@
 FROM debian@sha256:5a1fa4e7ca7e4a8ea0449d0e5e6ac6593b4aebac12f658e69af354c0b3cb073a
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/London
 
 RUN apt update && \
     apt upgrade -y && \
@@ -62,17 +61,17 @@ RUN apt update && \
 
 RUN ln -s /usr/include/libdrm/ /usr/include/drm
 
-# Install libsdl1.2
 WORKDIR /root
-RUN git clone https://github.com/libsdl-org/sdl12-compat.git && \
+
+# Install libsdl1.2
+RUN git clone --depth 1 https://github.com/libsdl-org/sdl12-compat.git && \
     cd sdl12-compat && \
     mkdir build && cd build && \
     cmake .. && \
     make -j$(nproc)
 
 # Install gl4es
-WORKDIR /root
-RUN git clone https://github.com/ptitSeb/gl4es.git && \
+RUN git clone --depth 1 https://github.com/ptitSeb/gl4es.git && \
     cd gl4es && \
     mkdir build && cd build && \
     cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
@@ -80,7 +79,6 @@ RUN git clone https://github.com/ptitSeb/gl4es.git && \
 
 # Install more compatible SDL2
 ARG TARGETPLATFORM
-WORKDIR /root
 RUN case ${TARGETPLATFORM} in \
          "linux/amd64")  ARCHITECTURE=/usr/lib/x86_64-linux-gnu  ;; \
          "linux/arm64")  ARCHITECTURE=/usr/lib/aarch64-linux-gnu  ;; \
