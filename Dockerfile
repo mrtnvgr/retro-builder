@@ -1,4 +1,4 @@
-FROM debian:unstable-20250610-slim
+FROM debian@sha256:5a1fa4e7ca7e4a8ea0449d0e5e6ac6593b4aebac12f658e69af354c0b3cb073a
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
@@ -45,7 +45,6 @@ RUN apt update && \
     libcurl4 \
     libfreetype6-dev \
     libjsoncpp-dev \
-    librhash0 \
     libuv1 \
     mercurial \
     mercurial-common \

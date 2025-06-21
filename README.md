@@ -6,7 +6,7 @@ Based on [retro_builder_docker](https://github.com/monkeyx-net/retro_builder_doc
 
 ### This fork features:
 
-- Ubuntu 20.04 -> Debian Unstable 20250610
+- Ubuntu 20.04 -> Debian Unstable (pinned)
 - Github Workflows CI builds
 - Other misc improvements
 
