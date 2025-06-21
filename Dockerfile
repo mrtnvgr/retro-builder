@@ -70,10 +70,10 @@ RUN git clone --depth 1 https://github.com/libsdl-org/sdl12-compat.git && \
     make -j$(nproc)
 
 # Install gl4es
-RUN git clone --depth 1 https://github.com/ptitSeb/gl4es.git && \
-    cd gl4es && \
+RUN git clone --depth 1 --branch "v1.1.4" https://github.com/ptitSeb/gl4es.git
+RUN cd gl4es && \
     mkdir build && cd build && \
-    cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
+    cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON && \
     make -j$(nproc)
 
 # Install more compatible SDL2
