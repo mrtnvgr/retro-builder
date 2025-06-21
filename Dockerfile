@@ -90,16 +90,16 @@ RUN case ${TARGETPLATFORM} in \
     && tar -xzf release-2.26.2.tar.gz \
     && rm release-2.26.2.tar.gz \
     && cd SDL-release-2.26.2 \
-    && ./configure --prefix=/usr \
+    && ./configure \
     && make -j$(nproc) \
     && make install \
     && /sbin/ldconfig
 
 # Build gptokeyb2
-RUN git clone --depth 1 https://github.com/PortsMaster/gptokeyb2 && \
+RUN git clone --depth 1 --recursive https://github.com/PortsMaster/gptokeyb2 && \
 	cd gptokeyb2 && \
 	mkdir build && cd build && \
-	cmake -S .. -DCMAKE_BUILD_TYPE=Release && \
-    make -j$(nproc) && \
+	cmake -S .. -GNinja -DCMAKE_BUILD_TYPE=Release && \
+    cmake --build . && \
 	strip -s gptokeyb2 && \
     mv gptokeyb2 ../
