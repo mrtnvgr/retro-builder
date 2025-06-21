@@ -29,7 +29,6 @@ RUN apt update && \
     ffmpeg \
     libsnappy-dev \
     libboost-tools-dev \
-    magics++ \
     libboost-thread-dev \
     libboost-all-dev \
     pkg-config \
@@ -40,11 +39,11 @@ RUN apt update && \
     clang \
     cmake \
     cmake-data \
-    libarchive13 \
-    libcurl4 \
+    libarchive13t64 \
+    libcurl4t64 \
     libfreetype6-dev \
     libjsoncpp-dev \
-    libuv1 \
+    libuv1t64 \
     mercurial \
     mercurial-common \
     libgbm-dev \
