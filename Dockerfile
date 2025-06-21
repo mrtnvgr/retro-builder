@@ -95,3 +95,12 @@ RUN case ${TARGETPLATFORM} in \
     && make -j$(nproc) \
     && make install \
     && /sbin/ldconfig
+
+# Build gptokeyb2
+RUN git clone --depth 1 https://github.com/PortsMaster/gptokeyb2 && \
+	cd gptokeyb2 && \
+	mkdir build && cd build && \
+	cmake -S .. -DCMAKE_BUILD_TYPE=Release && \
+    make -j$(nproc) && \
+	strip -s gptokeyb2 && \
+    mv gptokeyb2 ../
