@@ -1,0 +1,14 @@
+diff --git a/src/glx/glx_stubs.c b/src/glx/glx_stubs.c
+index 4ba4de5c..230cc705 100644
+--- a/src/glx/glx_stubs.c
++++ b/src/glx/glx_stubs.c
+@@ -7,6 +7,9 @@
+ //#define WARN_GLX_STUB() LOGD("Warning, stubbed %s\n", __FUNCTION__); return NULL;
+ #define WARN_GLX_STUB() return NULL;
+ 
++#pragma GCC diagnostic ignored "-Wreturn-mismatch"
++#pragma GCC diagnostic ignored "-Wint-conversion"
++
+ GLXContext  gl4es_glXCreateContext(Display *display, XVisualInfo *visual, GLXContext shareList, Bool isDirect){ WARN_GLX_STUB(); }
+ GLXContext  gl4es_glXCreateContextAttribsARB(Display *display, GLXFBConfig config, GLXContext share_context, Bool direct, const int *attrib_list){ WARN_GLX_STUB(); }
+ void  gl4es_glXDestroyContext(Display *display, GLXContext ctx){ WARN_GLX_STUB(); }
